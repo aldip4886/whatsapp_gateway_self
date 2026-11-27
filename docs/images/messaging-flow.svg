@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs><style>.title{font:700 38px Arial;fill:#0d2b49}.h{font:700 22px Arial;fill:#102b48}.d{font:17px Arial;fill:#304a64}.b{stroke:#bac9d9;stroke-width:2;rx:18}.arrow{stroke:#476b8d;stroke-width:4;fill:none;marker-end:url(#m)}</style><marker id="m" markerWidth="10" markerHeight="10" refX="7" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10" fill="#476b8d"/></marker></defs>
+<rect width="1600" height="900" fill="#f5f8fc"/><text x="80" y="90" class="title">Messaging Lifecycle &amp; Processing</text>
+<text x="80" y="150" class="h">OUTBOUND — Campaign Delivery</text>
+<g>
+<rect x="80" y="190" width="250" height="125" fill="#e5efff" class="b"/><text x="205" y="240" text-anchor="middle" class="h">Campaign</text><text x="205" y="275" text-anchor="middle" class="d">Audience &amp; template</text>
+<path d="M330 252 H385" class="arrow"/>
+<rect x="390" y="190" width="250" height="125" fill="#fff" class="b"/><text x="515" y="240" text-anchor="middle" class="h">Validation</text><text x="515" y="275" text-anchor="middle" class="d">Consent, variables, limits</text>
+<path d="M640 252 H695" class="arrow"/>
+<rect x="700" y="190" width="250" height="125" fill="#fff4db" class="b"/><text x="825" y="240" text-anchor="middle" class="h">Queue</text><text x="825" y="275" text-anchor="middle" class="d">Persistent jobs / pacing</text>
+<path d="M950 252 H1005" class="arrow"/>
+<rect x="1010" y="190" width="250" height="125" fill="#e2f4e8" class="b"/><text x="1135" y="240" text-anchor="middle" class="h">Worker</text><text x="1135" y="275" text-anchor="middle" class="d">Send / retry / dedupe</text>
+<path d="M1260 252 H1315" class="arrow"/>
+<rect x="1320" y="190" width="200" height="125" fill="#d9f6e4" class="b"/><text x="1420" y="240" text-anchor="middle" class="h">Meta API</text><text x="1420" y="275" text-anchor="middle" class="d">Delivery</text>
+</g>
+<text x="80" y="420" class="h">INBOUND — Conversation Handling</text>
+<g>
+<rect x="80" y="460" width="250" height="125" fill="#e5efff" class="b"/><text x="205" y="510" text-anchor="middle" class="h">Incoming Message</text><text x="205" y="545" text-anchor="middle" class="d">WhatsApp user</text>
+<path d="M330 522 H385" class="arrow"/>
+<rect x="390" y="460" width="250" height="125" fill="#fff" class="b"/><text x="515" y="510" text-anchor="middle" class="h">Webhook</text><text x="515" y="545" text-anchor="middle" class="d">Verify, persist, dedupe</text>
+<path d="M640 522 H695" class="arrow"/>
+<rect x="700" y="460" width="250" height="125" fill="#fff4db" class="b"/><text x="825" y="510" text-anchor="middle" class="h">Event Queue</text><text x="825" y="545" text-anchor="middle" class="d">Async processing</text>
+<path d="M950 522 H1005" class="arrow"/>
+<rect x="1010" y="460" width="250" height="125" fill="#fff" class="b"/><text x="1135" y="510" text-anchor="middle" class="h">Router</text><text x="1135" y="545" text-anchor="middle" class="d">Rule, AI, ticket, agent</text>
+<path d="M1260 522 H1315" class="arrow"/>
+<rect x="1320" y="460" width="200" height="125" fill="#e2f4e8" class="b"/><text x="1420" y="510" text-anchor="middle" class="h">Response</text><text x="1420" y="545" text-anchor="middle" class="d">Bot or help desk</text>
+</g>
+<rect x="80" y="650" width="1440" height="155" fill="#132f4f" class="b"/><text x="800" y="700" text-anchor="middle" class="h" style="fill:#fff">Shared Reliability Controls</text><text x="800" y="750" text-anchor="middle" class="d" style="fill:#e1edf9">Idempotency · Rate limiting · Retry &amp; backoff · Dead-letter handling · Audit logs · Consent suppression</text></svg>
