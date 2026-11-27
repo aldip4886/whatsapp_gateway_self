@@ -32,6 +32,7 @@ Start with a **modular monolith + background workers**, not microservices. Use R
 
 - [PRD v1.0](docs/PRD-v1.0.md)
 - [Version history](docs/VERSIONING.md)
+- [Visual reference overview](docs/REFERENCE-VISUALS.md)
 - [Architecture reference diagrams](docs/images/README.md)
 
 ## Planned delivery
