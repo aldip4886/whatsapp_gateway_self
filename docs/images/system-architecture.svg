@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs><style>.title{font:700 40px Arial;fill:#102b48}.label{font:700 25px Arial;fill:#102b48}.txt{font:19px Arial;fill:#304a64}.white{fill:#fff}.box{rx:22;stroke:#b5c6d8;stroke-width:2}</style></defs>
+<rect width="1600" height="900" fill="#f3f7fb"/><text x="80" y="95" class="title">WhatsApp Gateway — System Architecture</text>
+<rect x="80" y="150" width="1440" height="115" class="box" fill="#143b63"/><text x="800" y="195" text-anchor="middle" class="label white">CLIENT LAYER</text><text x="800" y="235" text-anchor="middle" class="txt white">Admin Dashboard · Agent Inbox · Responsive Web</text>
+<path d="M800 265 V305" stroke="#506d8c" stroke-width="5"/><path d="M790 295 L800 308 L810 295" fill="#506d8c"/>
+<rect x="80" y="310" width="1440" height="145" class="box" fill="#fff"/><text x="800" y="355" text-anchor="middle" class="label">APPLICATION LAYER</text><text x="800" y="400" text-anchor="middle" class="txt">Auth / RBAC · Contacts · Campaigns · Inbox · Help Desk · Automation · AI</text>
+<path d="M800 455 V495" stroke="#506d8c" stroke-width="5"/><path d="M790 485 L800 498 L810 485" fill="#506d8c"/>
+<rect x="80" y="500" width="1440" height="145" class="box" fill="#fff4db"/><text x="800" y="545" text-anchor="middle" class="label">MESSAGING &amp; EVENT LAYER</text><text x="800" y="590" text-anchor="middle" class="txt">API · Webhooks · Redis Queue · Scheduler · Send Workers · Automation Workers</text>
+<path d="M800 645 V685" stroke="#506d8c" stroke-width="5"/><path d="M790 675 L800 688 L810 675" fill="#506d8c"/>
+<g><rect x="80" y="690" width="690" height="140" class="box" fill="#e4f0ff"/><text x="425" y="740" text-anchor="middle" class="label">DATA LAYER</text><text x="425" y="785" text-anchor="middle" class="txt">PostgreSQL · Redis · Object Storage</text></g>
+<g><rect x="830" y="690" width="690" height="140" class="box" fill="#e0f4e7"/><text x="1175" y="740" text-anchor="middle" class="label">INTEGRATION LAYER</text><text x="1175" y="785" text-anchor="middle" class="txt">Meta WhatsApp Cloud API · AI APIs · External systems</text></g>
+<text x="80" y="870" class="txt">MVP architecture: modular monolith with horizontally scalable background workers.</text></svg>
