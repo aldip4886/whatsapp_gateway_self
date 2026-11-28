@@ -1,9 +1,9 @@
 # WhatsApp Gateway — Product Requirements Document
 
 **Document:** PRD  
-**Version:** 1.0.0  
-**Status:** Baseline / Proposed  
-**Date:** 2026-11-27  
+**Version:** 1.1.0
+**Status:** Baseline / Confirmed design direction
+**Date:** 2026-11-28
 **Repository:** [whatsapp_gateway_self](https://github.com/aldip4886/whatsapp_gateway_self)
 
 ## 1. Executive Summary
@@ -24,6 +24,17 @@ WhatsApp Gateway is a centralized platform for WhatsApp communications, campaign
 - Support shared inbox, agent assignment, tickets, and service analytics.
 - Track delivery, read, failure, response, and service metrics.
 - Integrate with external systems through API and webhooks.
+
+### Confirmed design direction
+
+- MVP is limited to reliable core messaging: authentication/RBAC, contacts, consent, templates, provider integration, webhook processing, campaigns, queues/retries, and basic analytics. Shared inbox, ticketing, visual automation, and AI/RAG are phased after the core is proven.
+- Initial deployment targets one organization, one WABA, and one active sender. Domain boundaries must leave room for multi-tenant and multi-sender support without implementing that complexity prematurely.
+- Architecture is a modular monolith with independently scalable workers. Messaging and event workloads are asynchronous, durable, observable, and idempotent.
+- Meta Cloud API is accessed through a normalized provider adapter. Business logic must not depend on raw provider payloads.
+- Campaigns use an explicit state machine and recipient snapshot. Consent and suppression checks run during audience validation and immediately before dispatch.
+- Webhooks are verified, deduplicated, persisted quickly, acknowledged, and processed asynchronously.
+- Campaigns above 1,000 recipients require explicit approval by default; the threshold is configurable.
+- Reliability, consent, auditability, observability, and recovery are release gates. A roadmap feature may be deferred if it does not meet them.
 
 ## 2. Scope & Product Modules
 
@@ -92,7 +103,7 @@ Requirements:
 - Pause, resume, cancel; show progress and status.
 - Track recipient-level status, errors, provider message IDs.
 - Rate control, pacing, retries, and duplicate prevention.
-- Campaign approval/confirmation option for high-volume sends.
+- Campaign approval/confirmation required by default for campaigns above 1,000 recipients; the threshold is configurable.
 - Export campaign report.
 
 ### 4.4 Messaging & Templates
@@ -214,7 +225,7 @@ Event/schedule trigger → audience/condition evaluation → eligible contact an
 
 ### Architecture decision
 
-Use a **modular monolith with independently scalable background workers** for MVP. Avoid microservices until scale, team boundaries, or operational requirements justify splitting services.
+Use a **modular monolith with independently scalable background workers** for MVP. The initial scope is one organization, one WABA, and one active sender, while preserving clear boundaries for future multi-tenant and multi-sender support. Avoid microservices until scale, team boundaries, or operational requirements justify splitting services.
 
 Logical layers:
 1. Client: responsive admin dashboard and agent inbox.
@@ -463,6 +474,8 @@ Design direction: clean/minimal; navy and blue primary, WhatsApp green accent, g
 - Basic campaign analytics
 - Logs, audit, backups, Docker deployment
 
+MVP release gate: every shipped capability must meet reliability, consent, auditability, observability, and recovery requirements. Features that do not meet these gates move to a later phase.
+
 ### Phase 2 — Automation & support
 - Shared inbox
 - Conversation history
@@ -556,7 +569,7 @@ WhatsApp costs vary by applicable Meta pricing, message category, destination an
 - Provider statuses are reflected when webhook events are received.
 - Incoming messages are accepted, validated, deduplicated and persisted.
 - Basic auto-response can be configured.
-- Shared inbox basic operation is available (if included in MVP release scope; otherwise Phase 2).
+- Shared inbox and ticketing are explicitly Phase 2 and are not required for the core messaging MVP.
 - Failed sends are classified and retried when appropriate.
 - Opt-out contacts are suppressed.
 - Campaign outcomes can be exported.
@@ -614,8 +627,8 @@ MVP may begin as a simpler workspace; folders should reflect module boundaries w
 
 - Public or private repository: repository currently public; confirm before production code or secrets are added.
 - WhatsApp business ownership, number, WABA, app and production access.
-- Single business/organization vs multi-tenant architecture.
-- Campaign approval workflow and sender permissions.
+- Initial scope is one organization, one WABA, and one active sender; multi-tenancy and multi-sender support remain future extensions.
+- Campaigns above 1,000 recipients require approval by default; the threshold and sender permissions remain configurable.
 - Expected monthly message volume and peak rate.
 - Help desk team size, hours, SLA and assignment rules.
 - AI provider, knowledge sources, budget, data residency and retention.
@@ -627,6 +640,7 @@ MVP may begin as a simpler workspace; folders should reflect module boundaries w
 
 | Version | Date | Notes |
 |---|---|---|
+| 1.1.0 | 2026-11-28 | Confirmed MVP boundaries, modular-monolith direction, consent/idempotency rules, webhook reliability, sender scope, approval threshold, and release gates. |
 | 1.0.0 | 2026-11-27 | Initial product baseline covering campaign messaging, automation, chatbot/AI, help desk, architecture, stack, infrastructure, API outline, security, roadmap and acceptance criteria. |
 
 ---
